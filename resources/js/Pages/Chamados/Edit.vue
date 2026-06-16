@@ -75,10 +75,6 @@ function submit() {
                 Salvar alterações
             </button>
 
-            <button @click="form.delete(`/chamados/${props.chamado.id}`)" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
-                Excluir chamado
-            </button>
-
             <button @click="$inertia.get('/chamados')" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
                 Voltar para lista
             </button>

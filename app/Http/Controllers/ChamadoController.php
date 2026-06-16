@@ -60,12 +60,6 @@ class ChamadoController extends Controller
         return redirect()->route('chamados.index')->with('success', 'Chamado atualizado com sucesso!');
     }
 
-    public function destroy(Chamado $chamado) 
-    {
-        $chamado->delete();
-        return redirect()->route('chamados.index')->with('success', 'Chamado excluído com sucesso!');
-    }
-
     public function show(Chamado $chamado) 
     {
         return Inertia::render('Chamados/Show', [

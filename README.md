@@ -1,58 +1,46 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Controle de Chamados Internos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicação web para abertura e acompanhamento de chamados internos de uma empresa. No sistema, é possível criar, visualizar e editar chamados. O sistema também oferece a possibilidade de atribuição automática de chamados para um melhor controle de carga, garantindo o equilíbrio de tarefas entre os responsáveis responsáveis.
 
-## About Laravel
+Sistema desenvolvido para desafio técnico para a equipe Codificar.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **CRUD de chamados**: cadastro, edição, listagem, visualização
+- **Campos do chamado**: título, descrição, prioridade (baixa, média, alta), status (aberto, em andamento, resolvido, fechado), responsável e data/hora de abertura.
+- **Responsáveis**: conjunto de responsáveis pré-cadastrados (via seeder), selecionáveis ao abrir ou editar um chamado.
+- **Distribuição automática**: Opção de atribuição automática ao responsável com menos chamados em aberto.
+- **Atribuição manual**: O usuário pode escolher manualmente o responsável
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Stack utilizada
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Camada | Tecnologia |
+|---|---|
+| Backend | Laravel 13 (PHP 8.4) |
+| Ponte | Inertia.js |
+| Frontend | Vue 3 (Composition API) |
+| Estilos | Tailwind CSS |
+| Banco de dados | SQLite |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Justificativa das Escolhas
 
-## Agentic Development
+### Por que Laravel + Inertia + Js ?
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+O desafio sugere que o sistema deve ser simples, de baixa manutenibilidade, e por último e principal requisito: o sistema deve garantir o mínimo de atrito possível entre backend e frontend. Esse último requisito é uma "dica" valiosa de qual Stack utilizar para o projeto. Além de ser a stack principal da empresa codificar, a stack Laravel + Inertia.js + Vue (Continuação aqui)
 
-```bash
-composer require laravel/boost --dev
+- Laravel: O Laravel entra no back-end pela produtividade e quantidade de recursos que oferece por padrão: Eloquent ORM, migrations, seeders, Query Builders, Form Requests.
 
-php artisan boost:install
-```
+- Inertia.js: O inertia.js é a peça central da arquitetura, ele permite a criação de SPAs (Single Pages Application) em Vue sem precisar consumir uma API Rest separada. O Controller Laravel devolve os dados (props) diretamente para o componente Vue. Isso proporciona o menor atrito possível entre backend e frontend, garantindo um sistema harmonioso em seu ecossistema.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+- Vue 3: O Vue 3 com Composition API oferece componentização e reatividade para construir telas
 
-## Contributing
+- Tailwind Css: O tailwind css permite montar uma interface organizada, simples e de forma rápida sem precisar "reinventar a roda
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- SQLite: O banco de dados SQLite foi escolhido para que a aplicação seja executável localmente por qualquer pessoa do time sem configuração. Atendendo diretamente ao requisito 6.1.
 
-## Code of Conduct
+### Decisões arquiteturais
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

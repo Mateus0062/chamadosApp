@@ -39,6 +39,11 @@ defineProps({
           <td class="text-sm text-gray-500">
             {{ new Date(c.created_at).toLocaleString('pt-BR') }}
           </td>
+          <td>
+            <Link :href="`/chamados/${c.id}/edit`" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+              Editar
+            </Link>
+          </td>
         </tr>
       </tbody>
     </table>

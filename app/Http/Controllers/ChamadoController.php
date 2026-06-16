@@ -9,6 +9,7 @@ use App\Models\Chamado;
 use App\Models\Responsavel;
 use App\Services\AtribuirResponsavelService;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class ChamadoController extends Controller
 {
@@ -21,13 +22,13 @@ class ChamadoController extends Controller
     public function create()
     {
         return Inertia::render('Chamados/Create', [
-            'responsaveis' => Responsavel::all()->map(fn($r) => [$r => ['id' => $r->id, 'nome' => $r->nome]]),
+            'responsaveis' => Responsavel::orderBy('nome', 'asc')->get(),
         ]);
     }
 
-    public function store(ChamadoRequest $request, AtribuirResponsavelService $atribbuirResponsavelService) 
+    public function store(ChamadoRequest $request, AtribuirResponsavelService $atribbuirResponsavelService)
     {
-        $data = $request->validated();
+        $data = $request->validated();   // ← isto tem que voltar
 
         if ($request->boolean('atribuir_auto')) {
             $data['responsavel_id'] = $atribbuirResponsavelService->atribuir()->id;
@@ -38,10 +39,11 @@ class ChamadoController extends Controller
         return redirect()->route('chamados.index')->with('success', 'Chamado criado com sucesso!');
     }
 
-    public function edit(Chamado $chamado) {
+    public function edit(Chamado $chamado)
+    {
         return Inertia::render('Chamados/Edit', [
-            'chamado' => $chamado->load('responsavel'),
-            'responsaveis' => Responsavel::all()->map(fn($r) => ['id' => $r->id, 'nome' => $r->nome]),
+            'chamado'      => $chamado,
+            'responsaveis' => Responsavel::orderBy('nome', 'asc')->get(),
         ]);
     }
 

@@ -30,7 +30,7 @@ Sistema desenvolvido para desafio técnico para a equipe Codificar.
 
 ### Por que Laravel + Inertia + Js ?
 
-O desafio sugere que o sistema deve ser simples, de baixa manutenibilidade, e por último e principal requisito: o sistema deve garantir o mínimo de atrito possível entre backend e frontend. Esse último requisito é uma "dica" valiosa de qual Stack utilizar para o projeto. Além de ser a stack principal da empresa codificar, a stack Laravel + Inertia.js + Vue (Continuação aqui)
+O desafio sugere que o sistema deve ser simples, de baixa manutenibilidade, e por último e principal requisito: o sistema deve garantir o mínimo de atrito possível entre backend e frontend. Esse último requisito é uma "dica" valiosa de qual Stack utilizar para o projeto. Além de ser a stack principal da empresa codificar, a stack Laravel + Inertia.js + Vue garante o desenvolvimento de aplicações rápidas e sem a complexidade de criar e manter uma API Rest separada.
 
 - Laravel: O Laravel entra no back-end pela produtividade e quantidade de recursos que oferece por padrão: Eloquent ORM, migrations, seeders, Query Builders, Form Requests.
 
@@ -44,3 +44,48 @@ O desafio sugere que o sistema deve ser simples, de baixa manutenibilidade, e po
 
 ### Decisões arquiteturais
 
+- **Enums para Prioridade e Status**: O uso de Enums garatem "type Safety" e uma única fonte de verdade e evitam o uso de "magic strings" espalhados pelo código laravel"
+
+- **Service para a distribuição automática**: coração do projeto mora dentro deste trecho de código. Decidi criar um Service separado para implementar esta regra de negócio deixando-a isolada do Controller, para que o projeto fique dentro dos padrões SOLID de classes com responsabilidades únicas. 
+
+Anteriormente eu havia pensando em utilizar Query Builders para montar essa lógica, mas após algumas pesquisas, o método query() do Eloquent ORM deixou tudo mais intuitivo, portanto foi o método que escolhi para fazer essa lógica de atribuição automática.
+
+## Pré-requisitos
+
+- PHP 8.3+
+- Composer
+- Node.js 20+ e npm
+- Git
+
+## Instalação e Execução
+
+```bash
+# 1. Clonar o repositório
+git clone https://github.com/Mateus0062/chamadosApp.git
+cd chamadosApp
+ 
+# 2. Instalar dependências do PHP
+composer install
+ 
+# 3. Configurar o ambiente
+cp .env.example .env
+php artisan key:generate
+ 
+# 4. Criar o arquivo do banco SQLite (caso não exista)
+#    Linux/Mac:
+touch database/database.sqlite
+#    Windows (PowerShell):
+#    New-Item database/database.sqlite
+ 
+# 5. Rodar as migrations e popular os responsáveis
+php artisan migrate --seed
+ 
+# 6. Instalar dependências do frontend
+npm install
+```
+
+## Rodando a aplicação
+
+```bash
+composer run dev
+```
